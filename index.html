@@ -622,6 +622,53 @@
       width: fit-content;
       transition: background 0.2s;
     }
+
+      @media (max-width: 768px) {
+    .hero-content {
+      flex: 1 1 100%;
+      padding: 32px 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      text-align: center;
+    }
+
+    .hero-title {
+      text-align: center;
+      font-size: clamp(24px, 7vw, 36px);
+    }
+
+    .hero-subtitle {
+      text-align: center;
+    }
+
+    .btn-preschedule {
+      margin: 0 auto;
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 24px 16px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+    }
+
+    .btn-preschedule {
+      font-size: 10px;
+      padding: 10px 16px;
+    }
+  }
     .btn-preschedule:hover { background: #3730a3; }
 
     .btn-preschedule .arrow-icon {
