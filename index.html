@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===================== RESET & BASE ===================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --clr-purple-dark: #1a0a3c;
@@ -34,7 +33,6 @@
     ul { list-style: none; }
     button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-    /* ===================== SKIP LINK ===================== */
     .skip-link {
       position: absolute; top: -100%; left: 0; padding: 12px 20px;
       background: var(--clr-gold); color: var(--clr-purple-dark);
@@ -42,18 +40,18 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* ===================== NAVBAR ===================== */
-    .navbar {
+     /* ===================== NAVBAR ===================== */
+     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
-      background: transparent;
+      background: var(--clr-white);
       transition: background var(--transition), height var(--transition), box-shadow var(--transition);
     }
     .navbar.scrolled {
       height: var(--nav-h-scrolled);
-      background: var(--clr-white);
+      background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-mid) 40%, var(--clr-purple-main) 100%);
       box-shadow: 0 2px 20px rgba(0,0,0,0.12);
     }
     .navbar__logo img { height: 56px; transition: height var(--transition); }
@@ -61,18 +59,57 @@
     .navbar__cta {
       display: flex; align-items: center; gap: 8px;
       padding: 10px 22px; border: 2px solid var(--clr-white);
-      color: var(--clr-white); font-weight: 700; font-size: 0.9rem;
+      border-color: var(--clr-purple-main); 
+      color: var(--clr-purple-dark);
+      
+      font-weight: 700; font-size: 0.9rem;
       letter-spacing: 0.06em; text-transform: uppercase;
       transition: background var(--transition), color var(--transition), border-color var(--transition);
     }
     .navbar.scrolled .navbar__cta {
-      border-color: var(--clr-purple-main); color: var(--clr-purple-dark);
+      border-color: var(--clr-purple-main); 
+     background-color: var(--clr-white);
+      color: var(--clr-purple-dark);
     }
     .navbar__cta:hover, .navbar__cta:focus-visible {
       background: var(--clr-gold); border-color: var(--clr-gold); color: var(--clr-purple-dark);
       outline: none;
     }
     .navbar__cta svg { width: 16px; height: 16px; }
+
+    .brand-hero-mark {
+      position: absolute;
+      left: 30px;
+      /* top: 100%; */
+      transform: translateY(-35%);
+      z-index: 100;
+      transition: all 0.35s ease;
+    }
+
+    .brand-hero-mark img {
+      height: 90px;
+      width: auto;
+    }
+
+    .brand-navbar-mark {
+      display: none;
+      align-items: center;
+    }
+
+    .brand-navbar-mark img {
+      height: 38px;
+      width: auto;
+    }
+
+    .header-scrolled .brand-hero-mark {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .header-scrolled .brand-navbar-mark {
+      display: flex;
+    }
 
     /* Hamburger */
     .navbar__hamburger {
@@ -123,122 +160,115 @@
     }
     .hero__heading span { color: var(--clr-gold-light); }
     .hero__venues {
-  background: #f2cd8f;
-  border: 6px double #9d6b4d;
-  border-radius: 24px;
-  padding: 10px;
-  width: 100%;
-  max-width: 420px;
-}
-
-.hero__venue-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  padding: 14px 10px;
-
-  background: transparent;
-  border: none;
-  border-radius: 0;
-
-  border-bottom: 1px solid rgba(80,50,30,.25);
-}
-
-.hero__venue-card:last-child {
-  border-bottom: none;
-}
-.hero__venue-card > div:first-child {
-  border-right: 1px solid rgba(80,50,30,.25);
-  padding-right: 14px;
-}
-
-.hero__venue-card > div:last-child {
-  padding-left: 14px;
-}
-.hero__venue-name {
-  color: #24125e;
-  font-size: 1.1rem;
-  font-weight: 800;
-}
-
-.hero__venue-addr {
-  color: #24125e;
-  font-size: 0.8rem;
-}
-
-.hero__venue-date {
-  color: #24125e;
-  font-size: 1rem;
-  font-weight: 800;
-}
-
-.hero__venue-time {
-  color: #24125e;
-  font-size: 0.8rem;
-}
-
-    /* Center – image slider */
-    
-    .hero__slider-wrap {
-  position: relative;
-  overflow: hidden;
-  /* height: 500px; */
-  z-index: 1;
-}
-.hero__slider {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  animation: verticalScroll 25s linear infinite;
-}
-
-.hero__slider:hover {
-  animation-play-state: paused;
-}
-    .hero__slide {
-      min-width: 100%; height: 100%; position: relative;
+      background: #f2cd8f;
+      border: 6px double #9d6b4d;
+      border-radius: 24px;
+      padding: 10px;
+      width: 100%;
+      max-width: 420px;
     }
-    .hero__images-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-  padding: 10px;
-}
 
-.hero__img-bubble {
-  height: 330px;
-  border-radius: 95px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-    /* .hero__img-bubble:nth-child(1) { border-radius: 50%; }
-    .hero__img-bubble:nth-child(2) { border-radius: 50% 50% 30% 30% / 50%; }
-    .hero__img-bubble:nth-child(3) { border-radius: 40% 60% 60% 40% / 50%; }
-    .hero__img-bubble:nth-child(4) { border-radius: 50%; }
-    .hero__img-bubble:nth-child(5) { border-radius: 60% 40% 40% 60% / 50%; }
-    .hero__img-bubble:nth-child(6) { border-radius: 50%; } */
-    .hero__img-bubble img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+    .hero__venue-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
 
-@keyframes verticalScroll {
-  from {
-    transform: translateY(0);
-  }
+      padding: 14px 10px;
 
-  to {
-    transform: translateY(-50%);
-  }
-}
+      background: transparent;
+      border: none;
+      border-radius: 0;
+
+      border-bottom: 1px solid rgba(80,50,30,.25);
+    }
+
+    .hero__venue-card:last-child {
+      border-bottom: none;
+    }
+    .hero__venue-card > div:first-child {
+      border-right: 1px solid rgba(80,50,30,.25);
+      padding-right: 14px;
+    }
+
+    .hero__venue-card > div:last-child {
+      padding-left: 14px;
+    }
+    .hero__venue-name {
+      color: #24125e;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .hero__venue-addr {
+      color: #24125e;
+      font-size: 0.8rem;
+    }
+
+    .hero__venue-date {
+      color: #24125e;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .hero__venue-time {
+      color: #24125e;
+      font-size: 0.8rem;
+    }
+
+        /* Center – image slider */
+        
+        .hero__slider-wrap {
+      position: relative;
+      overflow: hidden;
+      /* height: 500px; */
+      z-index: 1;
+    }
+    .hero__slider {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: verticalScroll 25s linear infinite;
+    }
+
+    .hero__slider:hover {
+      animation-play-state: paused;
+    }
+        .hero__slide {
+          min-width: 100%; height: 100%; position: relative;
+        }
+        .hero__images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .hero__img-bubble {
+      height: 330px;
+      border-radius: 95px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+   .hero__img-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes verticalScroll {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-50%);
+      }
+    }
 
     
     /* Right – enquiry */
     .hero__right {
       display: flex; flex-direction: column; justify-content: center;
-      /* padding: 10px 48px 10px 20px; z-index: 2; */
       padding: 60px 48px 60px 20px; z-index: 2;
     }
     .hero__form-box {
@@ -318,6 +348,10 @@
     }
     .schools__track--rtl { animation: scroll-right 30s linear infinite;  }
     .schools__track:hover, .schools__track--rtl:hover { animation-play-state: paused; }
+
+    .schools__track--ltr {margin-top: 20px; animation: scroll-left 30s linear infinite;  }
+    .schools__track:hover, .schools__track--ltr:hover { animation-play-state: paused; }
+
     @keyframes scroll-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -341,181 +375,176 @@
   display: inline-block;
 }
 
-.video-wrapper video {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
-}
-
-.play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  padding: 14px 24px;
-  border: none;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.9);
-  color: #222;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* ─────────────────────────────────────────────
-   SECTION – Choose the School That Fits You Best
-───────────────────────────────────────────── */
-.school-types {
-    background: white;
-    padding: 80px 40px;
-}
-
-.school-types__title {
-    text-align: center;
-    font-size: clamp(1.3rem, 2.5vw, 2rem);
-    font-weight: 700;
-    color: #22155c;
-    margin-bottom: 48px;
-}
-
-.school-types__grid {
-    max-width: 1150px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.school-card {
-    position: relative;
-    overflow: hidden;  
-    border-radius: 18px;
-    height: 320px;
-    cursor: pointer;
-    background: #111;
-}
-
-.school-card img {
+  .video-wrapper video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
-}
+    border-radius: 20px;
+  }
 
-.school-card:hover img {
-    transform: scale(1.08);
-}
-
-.school-card__content {
+  .play-btn {
     position: absolute;
-    inset: -1px;  /* ← was 0, -1px plugs the sub-pixel gap on all sides */
-    background: linear-gradient(
-        to top,
-        rgba(10, 4, 40, 0.88) 0%,
-        rgba(10, 4, 40, 0.45) 45%,
-        transparent 75%
-    );
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px 18px;
-    overflow: hidden;
-}
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-.school-card__content h3 {
-    font-size: clamp(0.82rem, 1.1vw, 0.97rem);
+    padding: 14px 24px;
+    border: none;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.9);
+    color: #222;
     font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 6px;
-    line-height: 1.35;
-    /* clamp text to 2 lines on very small cards */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+    cursor: pointer;
+  }
 
-.school-card__content p {
-    font-size: clamp(0.72rem, 0.9vw, 0.82rem);
-    color: rgba(255, 255, 255, 0.82);
-    line-height: 1.5;
-    margin: 0;
-    /* clamp to 3 lines on small cards */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+/* ────────────────── Choose the School That Fits You Best ─────────────── */
+  .school-types {
+      background: white;
+      padding: 80px 40px;
+  }
 
-/* ── Responsive ── */
+  .school-types__title {
+      text-align: center;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: #22155c;
+      margin-bottom: 48px;
+  }
 
-/* Tablet landscape: 2 columns */
-@media (max-width: 1024px) {
-    .school-types__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .school-card {
-        height: 300px;
-    }
-}
+  .school-types__grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+  }
 
-/* Tablet portrait: 2 columns, shorter cards */
-@media (max-width: 768px) {
-    .school-types {
-        padding: 60px 24px;
-    }
-    .school-types__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-    .school-card {
-        height: 260px;
-    }
-    .school-card__content h3 {
-        font-size: 0.88rem;
-    }
-    .school-card__content p {
-        font-size: 0.75rem;
-    }
-}
+  /* ── Card ── */
+  .school-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      height: 320px;
+      cursor: pointer;
+      background: #111;
+  }
 
-/* Mobile: single column */
-@media (max-width: 480px) {
-    .school-types {
-        padding: 44px 16px;
-    }
-    .school-types__grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-    .school-card {
-        height: 240px;
-    }
-    .school-card__content {
-        padding: 16px 14px;
-    }
-    .school-card__content h3 {
-        font-size: 0.92rem;
-        -webkit-line-clamp: 3;
-    }
-    .school-card__content p {
-        font-size: 0.78rem;
-        -webkit-line-clamp: 4;
-    }
-}
+  .school-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+  }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .school-card img {
-        transition: none;
-    }
-}
+  .school-card:hover img {
+      transform: scale(1.08);
+  }
 
-/* ─────────────────────────────────────────────
-       SECTION 1 – Pre-schedule Hero
-    ───────────────────────────────────────────── */
+  /* ── Text overlay ── */
+  .school-card__content {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+          to top,
+          rgba(10, 4, 40, 0.88) 0%,
+          rgba(10, 4, 40, 0.45) 45%,
+          transparent 75%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px 18px;
+      overflow: hidden;
+  }
+
+  .school-card__content h3 {
+      font-size: clamp(0.82rem, 1.1vw, 0.97rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 6px;
+      line-height: 1.35;
+      /* clamp text to 2 lines on very small cards */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
+
+  .school-card__content p {
+      font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+      margin: 0;
+      /* clamp to 3 lines on small cards */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
+
+  @media (max-width: 1024px) {
+      .school-types__grid {
+          grid-template-columns: repeat(2, 1fr);
+      }
+      .school-card {
+          height: 300px;
+      }
+  }
+
+  /* Tablet portrait: 2 columns, shorter cards */
+  @media (max-width: 768px) {
+      .school-types {
+          padding: 60px 24px;
+      }
+      .school-types__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+      }
+      .school-card {
+          height: 260px;
+      }
+      .school-card__content h3 {
+          font-size: 0.88rem;
+      }
+      .school-card__content p {
+          font-size: 0.75rem;
+      }
+  }
+
+
+  @media (max-width: 480px) {
+      .school-types {
+          padding: 44px 16px;
+      }
+      .school-types__grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+      }
+      .school-card {
+          height: 240px;
+      }
+      .school-card__content {
+          padding: 16px 14px;
+      }
+      .school-card__content h3 {
+          font-size: 0.92rem;
+          -webkit-line-clamp: 3;
+      }
+      .school-card__content p {
+          font-size: 0.78rem;
+          -webkit-line-clamp: 4;
+      }
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+      .school-card img {
+          transition: none;
+      }
+  }
+
+/* ──────────── SECTION 1 – Pre-schedule Hero ──────────── */
     .hero-section {
       position: relative;
       width: 100%;
@@ -526,7 +555,6 @@
       overflow: hidden;
     }
 
-    /* left lavender panel */
     .hero-content {
       flex: 0 0 45%;
       display: flex;
@@ -593,7 +621,6 @@
       font-size: 10px;
     }
 
-    /* right photo panel */
     .hero-image {
       flex: 0 0 55%;
       position: relative;
@@ -608,7 +635,6 @@
       display: block;
     }
 
-    /* smooth diagonal blend from left panel into photo */
     .hero-image::before {
       content: '';
       position: absolute;
@@ -618,12 +644,10 @@
       pointer-events: none;
     }
 
-    /* ─────────────────────────────────────────────
-       SECTION 2 – Attractions
-    ───────────────────────────────────────────── */
+    /* ────────── SECTION 2 – Attractions ─────── */
     .attractions-section {
       width: 100%;
-      background: linear-gradient(60deg, #fdfbff 0%, #fefefe 40%, #f3f7f7 70%, #daeef5 100%);
+      background: linear-gradient(60deg, #fdfbff 0%, #f1f7f8 40%, #f3f7f7 70%, #daeef5 100%);
       padding: 60px 56px 70px;
       display: flex;
       align-items: center;
@@ -655,17 +679,15 @@
       transform-origin: center center;
     }
 
-    /* S=130, gap=2, step=132 → container=2*132+130=394 */
-    /* top  */
     .rhombus-wrap:nth-child(1) { top: 0;    left: 132px; }
-    /* left */
+   
     .rhombus-wrap:nth-child(2) { top: 132px; left: 0;   }
-    /* right */
+    
     .rhombus-wrap:nth-child(3) { top: 132px; left: 264px; }
-    /* bottom */
+  
     .rhombus-wrap:nth-child(4) { top: 264px; left: 132px; }
 
-    /* ── Logo space (after gallery) ── */
+    
     .logo-space {
       flex: 0 0 auto;
       width: 160px;
@@ -675,12 +697,15 @@
       justify-content: center;
     }
 
-    /* Premier Kidz star SVG logo */
+   
     .logo-space svg { width: 100%; height: 100%; }
 
-    /* ── Right content ── */
     .attractions-content {
+      width: 100%;
       flex: 1;
+      padding-left: 10%;
+      justify-content: center; 
+      align-items: center;     
     }
 
     .attractions-title {
@@ -689,6 +714,7 @@
       color: #1e1b4b;
       line-height: 1.2;
       margin-bottom: 22px;
+      justify-content: center
     }
 
     .tab-buttons {
@@ -722,6 +748,7 @@
       font-weight: 800;
       color: #1e1b4b;
       margin-bottom: 8px;
+      justify-content: center
     }
 
     .attraction-desc {
@@ -730,6 +757,7 @@
       line-height: 1.6;
       max-width: 360px;
       margin-bottom: 28px;
+      justify-content: center
     }
 
     .btn-know-more {
@@ -761,9 +789,7 @@
       font-size: 10px;
     }
 
-    /* ─────────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────────── */
+    /* ──────── RESPONSIVE ─────── */
     @media (max-width: 900px) {
       .hero-section { flex-direction: column; min-height: auto; }
       .hero-content { flex: none; width: 100%; padding: 40px 28px 32px; }
@@ -776,7 +802,6 @@
         gap: 40px;
         align-items: center;
       }
-      /* S=90, gap=4, step=94 → container = 2*94+90 = 278 */
       .rhombus-gallery { width: 278px; height: 278px; }
       .rhombus-wrap { width: 90px; height: 90px; border-radius: 14px; }
       .rhombus-wrap:nth-child(1) { top: 0;     left: 94px; }
@@ -799,107 +824,97 @@
     }
 
     .pvg-section {
-  background: #fff;
-  padding: 56px 48px 64px;
-  text-align: center;
-  font-family: 'Poppins', 'Nunito', sans-serif;
-  box-sizing: border-box;
-}
-.pvg-section *, .pvg-section *::before, .pvg-section *::after {
-  box-sizing: border-box;
-}
+      background: #fff;
+      padding: 56px 48px 64px;
+      text-align: center;
+      font-family: 'Poppins', 'Nunito', sans-serif;
+      box-sizing: border-box;
+    }
+    .pvg-section *, .pvg-section *::before, .pvg-section *::after {
+      box-sizing: border-box;
+    }
 
-.pvg-heading {
-  font-size: clamp(1.2rem, 2.5vw, 1.85rem);
-  font-weight: 800;
-  color: #1e1b4b;
-  margin: 0 0 36px;
-  letter-spacing: -0.3px;
-}
+  .pvg-heading {
+    font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+    font-weight: 800;
+    color: #1e1b4b;
+    margin: 0 0 36px;
+    letter-spacing: -0.3px;
+  }
 
-/* ── Grid ────────────────────────────────────────────────────── */
-.pvg-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+  .pvg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-/* ── Card ────────────────────────────────────────────────────── */
-.pvg-card {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 4 / 3;
-  background: #111;
-  display: block;           /* ensures stacking context */
-}
+  .pvg-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    background: #111;
+    display: block;     
+  }
 
-.pvg-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease;
-}
-.pvg-card:hover img,
-.pvg-card:focus img {
-  transform: scale(1.05);
-}
-.pvg-card:focus-visible {
-  outline: 3px solid #7c3aed;
-  outline-offset: 3px;
-}
+  .pvg-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  .pvg-card:hover img,
+  .pvg-card:focus img {
+    transform: scale(1.05);
+  }
+  .pvg-card:focus-visible {
+    outline: 3px solid #7c3aed;
+    outline-offset: 3px;
+  }
 
-/* dark gradient overlay */
-.pvg-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
-  pointer-events: none;
-  z-index: 1;
-}
+  .pvg-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
 
-/* ── Play Button ─────────────────────────────────────────────── */
-/*
-  Positioned bottom-left with a fixed offset that scales with
-  clamp() so it stays visible and perfectly proportioned on every
-  card size — from full desktop down to single-column mobile.
-*/
-.pvg-play {
-  position: absolute;
-  bottom: clamp(8px, 3%, 14px);
-  left:   clamp(8px, 3%, 14px);
-  z-index: 2;
+  .pvg-play {
+    position: absolute;
+    bottom: clamp(8px, 3%, 14px);
+    left:   clamp(8px, 3%, 14px);
+    z-index: 2;
 
-  display: inline-flex;
-  align-items: center;
-  gap: 0;                     /* gap handled via padding */
+    display: inline-flex;
+    align-items: center;
+    gap: 0;                     /* gap handled via padding */
 
-  background: rgba(0, 0, 0, 0.52);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.52);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 
-  color: #fff;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: clamp(10px, 1.1vw, 13px);
-  white-space: nowrap;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: clamp(10px, 1.1vw, 13px);
+    white-space: nowrap;
 
-  border: none;
-  border-radius: 999px;
+    border: none;
+    border-radius: 999px;
 
-  /* left padding gives room for the circle icon + label gap */
-  padding: clamp(5px, 1%, 7px) clamp(10px, 2%, 14px) clamp(5px, 1%, 7px) clamp(30px, 6%, 38px);
+    padding: clamp(5px, 1%, 7px) clamp(10px, 2%, 14px) clamp(5px, 1%, 7px) clamp(30px, 6%, 38px);
 
-  cursor: pointer;
-  transition: background 0.2s ease;
-  line-height: 1;
-  max-width: calc(100% - clamp(16px, 6%, 28px)); /* never overflow card */
-}
+    cursor: pointer;
+    transition: background 0.2s ease;
+    line-height: 1;
+    max-width: calc(100% - clamp(16px, 6%, 28px)); /* never overflow card */
+  }
 
 .pvg-play:hover  { background: rgba(30, 27, 75, 0.82); }
 .pvg-play:focus-visible {
@@ -907,260 +922,230 @@
   outline-offset: 2px;
 }
 
-/* Circle icon container — absolutely placed inside the pill */
-.pvg-play__circle {
-  position: absolute;
-  left: clamp(5px, 1.2%, 8px);
-  top: 50%;
-  transform: translateY(-50%);
-
-  width:  clamp(20px, 4%, 26px);
-  height: clamp(20px, 4%, 26px);
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.28);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  pointer-events: none;
-}
-
-.pvg-play__circle svg {
-  width:  clamp(8px, 1.2vw, 11px);
-  height: clamp(8px, 1.2vw, 11px);
-  fill: #fff;
-  display: block;
-  /* nudge triangle visually centred inside circle */
-  margin-left: 1px;
-}
-
-.pvg-play__label {
-  /* just the text node — spacing from circle handled by left-padding on pill */
-  display: inline-block;
-}
-
-/* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .pvg-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 820px) {
-  .pvg-section { padding: 44px 28px 52px; }
-}
-
-@media (max-width: 480px) {
-  .pvg-grid    { grid-template-columns: 1fr; }
-  .pvg-section { padding: 36px 16px 44px; }
-  /* on single-column full-width cards the font can go a little bigger */
-  .pvg-play    { font-size: 12px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pvg-card img { transition: none; }
-}
-
-
-   /* =========================
-   GALLERY SECTION
-========================= */
-
-.gallery-section {
-    background: #efefef;
-    padding: 10px 0 10px;
-    
-    overflow: hidden;
-}
-
-.gallery-title {
-    text-align: center;
-    font-size: 48px;
-    font-weight: 700;
-    color: #26185c;
-    /* margin-bottom: 20px; */
-    position: relative;
-    z-index: 200;
-}
-
-/* =========================
-   FIXED CURVED VIEWPORT
-========================= */
-
-.gallery-mask {
-    position: relative;
-    width: 100%;
-    height: 340px;
-    overflow: hidden;
-}
-
-/* TOP CURVE */
-
-.gallery-mask::before {
-    content: "";
+  .pvg-play__circle {
     position: absolute;
-    left: -10%;
-    top: -180px;
+    left: clamp(5px, 1.2%, 8px);
+    top: 50%;
+    transform: translateY(-50%);
 
-    width: 120%;
-    height: 230px;
+    width:  clamp(20px, 4%, 26px);
+    height: clamp(20px, 4%, 26px);
+    border-radius: 50%;
 
-    background: #efefef;
+    background: rgba(255, 255, 255, 0.28);
 
-    border-radius: 0 0 50% 50%;
-
-    z-index: 100;
-    pointer-events: none;
-}
-
-/* BOTTOM CURVE */
-
-.gallery-mask::after {
-    content: "";
-    position: absolute;
-    left: -10%;
-    bottom: -180px;
-
-    width: 120%;
-    height: 230px;
-
-    background: #efefef;
-
-    border-radius: 50% 50% 0 0;
-
-    z-index: 100;
-    pointer-events: none;
-}
-
-/* =========================
-   SCROLLABLE LAYER
-========================= */
-
-.gallery-wrapper {
-    width: 100%;
-    height: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    cursor: grab;
-    user-select: none;
-
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    position: relative;
-}
-
-.gallery-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-.gallery-wrapper:active {
-    cursor: grabbing;
-}
-
-/* =========================
-   IMAGE TRACK
-========================= */
-
-.gallery-track {
     display: flex;
     align-items: center;
-
-    gap: 8px;
-
-    width: max-content;
-    height: 100%;
-
-    padding: 0;
-}
-
-/* =========================
-   IMAGES
-========================= */
-
-.gallery-track img {
-    width: 520px;
-    height: 340px;
-
-    object-fit: cover;
+    justify-content: center;
     flex-shrink: 0;
-
     pointer-events: none;
+  }
 
-    -webkit-user-drag: none;
-    user-select: none;
-}
+  .pvg-play__circle svg {
+    width:  clamp(8px, 1.2vw, 11px);
+    height: clamp(8px, 1.2vw, 11px);
+    fill: #fff;
+    display: block;
+    margin-left: 1px;
+  }
 
-/* =========================
-   RESPONSIVE
-========================= */
+  .pvg-play__label {
+    display: inline-block;
+  }
 
-@media (max-width: 992px) {
-    .gallery-mask {
-        height: 280px;
-    }
+  @media (max-width: 900px) {
+    .pvg-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-    .gallery-track img {
-        width: 420px;
-        height: 280px;
-    }
-}
+  @media (max-width: 820px) {
+    .pvg-section { padding: 44px 28px 52px; }
+  }
 
-@media (max-width: 768px) {
-    .gallery-title {
-        font-size: 36px;
-    }
+  @media (max-width: 480px) {
+    .pvg-grid    { grid-template-columns: 1fr; }
+    .pvg-section { padding: 36px 16px 44px; }
+    .pvg-play    { font-size: 12px; }
+  }
 
-    .gallery-mask {
-        height: 240px;
-    }
-
-    .gallery-track img {
-        width: 320px;
-        height: 240px;
-    }
-} 
+  @media (prefers-reduced-motion: reduce) {
+    .pvg-card img { transition: none; }
+  }
 
 
-/* THIS CREATES THE BLACK FADE */
-.school-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+   /* ======= GALLERY SECTION ====== */
 
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,.85) 0%,
-        rgba(0,0,0,.55) 30%,
-        rgba(0,0,0,.15) 60%,
-        rgba(0,0,0,0) 100%
-    );
-}
+  .gallery-section {
+      background: #ffffff;
+      padding: 10px 0 10px;
+      
+      overflow: hidden;
+  }
 
-.school-card__content {
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
+  .gallery-title {
+      text-align: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: #26185c;
+      /* margin-bottom: 20px; */
+      position: relative;
+      z-index: 200;
+  }
 
-    z-index: 2;
-}
+/* ====== FIXED CURVED VIEWPORT ====== */
 
-.school-card__content h3 {
-    color: #fff;
-    font-size: 1.35rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 10px;
-}
+  .gallery-mask {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+  }
 
-.school-card__content p {
-    color: rgba(255,255,255,.92);
-    font-size: .95rem;
-    line-height: 1.6;
-}
+  .gallery-mask::before {
+      content: "";
+      position: absolute;
+      left: -10%;
+      top: -180px;
+
+      width: 120%;
+      height: 230px;
+
+      background: #faf6f6;
+
+      border-radius: 0 0 50% 50%;
+
+      z-index: 100;
+      pointer-events: none;
+  }
+
+
+  .gallery-mask::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      bottom: -180px;
+
+      width: 120%;
+      height: 230px;
+
+      background: #fffcfc;
+
+      border-radius: 50% 50% 0 0;
+
+      z-index: 100;
+      pointer-events: none;
+  }
+
+  .gallery-wrapper {
+      width: 100%;
+      height: 100%;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      cursor: grab;
+      user-select: none;
+
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      position: relative;
+  }
+
+  .gallery-wrapper::-webkit-scrollbar {
+      display: none;
+  }
+
+  .gallery-wrapper:active {
+      cursor: grabbing;
+  }
+
+  .gallery-track {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      width: max-content;
+      height: 100%;
+
+      padding: 0;
+  }
+
+  .gallery-track img {
+      width: 520px;
+      height: 340px;
+
+      object-fit: cover;
+      flex-shrink: 0;
+
+      pointer-events: none;
+
+      -webkit-user-drag: none;
+      user-select: none;
+  }
+
+  @media (max-width: 992px) {
+      .gallery-mask {
+          height: 280px;
+      }
+
+      .gallery-track img {
+          width: 420px;
+          height: 280px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .gallery-title {
+          font-size: 36px;
+      }
+
+      .gallery-mask {
+          height: 240px;
+      }
+
+      .gallery-track img {
+          width: 320px;
+          height: 240px;
+      }
+  } 
+
+  .school-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background: linear-gradient(
+          to top,
+          rgba(0,0,0,.85) 0%,
+          rgba(0,0,0,.55) 30%,
+          rgba(0,0,0,.15) 60%,
+          rgba(0,0,0,0) 100%
+      );
+  }
+
+  .school-card__content {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+
+      z-index: 2;
+  }
+
+  .school-card__content h3 {
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+  }
+
+  .school-card__content p {
+      color: rgba(255,255,255,.92);
+      font-size: .95rem;
+      line-height: 1.6;
+  }
 
     /* ===================== CHOOSE SCHOOL SECTION ===================== */
     .choose {
@@ -1173,486 +1158,343 @@
       background: radial-gradient(circle, rgba(106,53,204,0.3), transparent);
       pointer-events: none;
     }
-    .choose__header { text-align: center; margin-bottom: 48px; }
-    .choose__title {
-      font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 900; color: var(--clr-white);
-    }
-    .choose__title span { color: var(--clr-gold); }
-    .choose__sub { color: var(--clr-text-muted); margin-top: 10px; font-size: 1rem; }
+    .ƒ { text-align: center; margin-bottom: 48px; }
 
-    /* Desktop 4 cards */
-    .choose__cards {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-    }
-    .choose__card {
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 12px; overflow: hidden;
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-    }
-    .choose__card:hover {
-      transform: translateY(-6px); border-color: var(--clr-gold);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-    .choose__card-img { width: 100%; height: 180px; object-fit: cover; }
-    .choose__card-body { padding: 20px; }
-    .choose__card-tag {
-      display: inline-block; padding: 4px 12px; border-radius: 20px;
-      background: rgba(212,168,67,0.2); color: var(--clr-gold-light);
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.06em; margin-bottom: 10px;
-    }
-    .choose__card-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--clr-white); margin-bottom: 8px; }
-    .choose__card-desc { font-size: 0.85rem; color: var(--clr-text-muted); line-height: 1.6; }
-    .choose__card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px; color: var(--clr-gold); font-size: 0.85rem; font-weight: 700;
-      transition: gap var(--transition);
-    }
-    .choose__card-link:hover { gap: 10px; }
+  .pse-highlights,
+  .pse-footer {
+    --pse-deep:      #2d0d52;
+    --pse-mid:       #3d1270;
+    --pse-card-bg:   #e8d5fc;
+    --pse-card-text: #2d0860;
+    --pse-card-sub:  #5b2fa0;
+    --pse-accent:    #7c3aed;
+    --pse-light:     #a855f7;
+    --pse-white:     #ffffff;
+    --pse-font-h:    'Poppins', sans-serif;
+    --pse-font-b:    'Nunito', sans-serif;
+    box-sizing: border-box;
+  }
+  .pse-highlights *, .pse-highlights *::before, .pse-highlights *::after,
+  .pse-footer *,     .pse-footer *::before,     .pse-footer *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
 
-    /* Mobile slider */
-    .choose__slider-wrap { display: none; }
-    .choose__slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
-    .choose__dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.3); transition: background var(--transition), transform var(--transition);
-    }
-    .choose__dot.active { background: var(--clr-gold); transform: scale(1.3); }
+/* ════════ Exhibition Highlights ═════════ */
+  .pse-highlights {
+    position: relative;
+    background: linear-gradient(155deg, #1e0838 0%, #3d1270 45%, #5a1f96 75%, #7330b8 100%);
+    padding: 64px 0 0;           
+    overflow: hidden;
+    font-family: var(--pse-font-b);
+  }
 
-    /* ===================== EXHIBITION SLIDER ===================== */
-    .exhibition {
-      background: var(--clr-cream); padding: 80px 0; overflow: hidden;
-    }
-    .exhibition__header {
-      text-align: center; margin-bottom: 48px; padding: 0 48px;
-    }
-    .exhibition__title {
-      font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 900; color: var(--clr-purple-dark);
-    }
-    .exhibition__title span { color: var(--clr-purple-main); }
-    .exhibition__sub { color: #666; margin-top: 10px; }
-    .exhibition__slider-outer { position: relative; }
-    .exhibition__track-wrap { overflow: hidden; padding: 10px 0; }
-    .exhibition__track {
-      display: flex; gap: 24px; padding: 0 48px;
-      transition: transform 0.6s cubic-bezier(0.77,0,0.175,1);
-    }
-    .exhibition__card {
-      flex-shrink: 0; width: 320px; border-radius: 12px; overflow: hidden;
-      background: var(--clr-white); box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: flex; flex-direction: column;
-    }
-    .exhibition__card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(74,31,168,0.15); }
-    .exhibition__card-img { width: 100%; height: 200px; object-fit: cover; }
-    .exhibition__card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
-    .exhibition__card-cat {
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--clr-purple-main); margin-bottom: 10px;
-    }
-    .exhibition__card-title {
-      font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
-      color: var(--clr-purple-dark); margin-bottom: 10px;
-    }
-    .exhibition__card-desc { font-size: 0.85rem; color: #555; line-height: 1.65; flex: 1; }
-    .exhibition__card-footer {
-      margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0eaff;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .exhibition__card-date { font-size: 0.8rem; font-weight: 600; color: var(--clr-purple-main); }
-    .exhibition__card-btn {
-      padding: 6px 14px; background: var(--clr-purple-main); color: var(--clr-white);
-      font-size: 0.8rem; font-weight: 700; border-radius: 4px;
-      transition: background var(--transition);
-    }
-    .exhibition__card-btn:hover { background: var(--clr-gold); color: var(--clr-purple-dark); }
-    .exhibition__nav {
-      display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 32px;
-    }
-    .exhibition__btn {
-      width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--clr-purple-main);
-      color: var(--clr-purple-main); display: flex; align-items: center; justify-content: center;
-      transition: background var(--transition), color var(--transition);
-    }
-    .exhibition__btn:hover, .exhibition__btn:focus-visible {
-      background: var(--clr-purple-main); color: var(--clr-white); outline: none;
-    }
-    .exhibition__dots { display: flex; gap: 6px; }
-    .exhibition__edot {
-      width: 8px; height: 8px; border-radius: 50%; background: #d0c8e8;
-      transition: background var(--transition), transform var(--transition);
-    }
-    .exhibition__edot.active { background: var(--clr-purple-main); transform: scale(1.3); }
+  .pse-highlights__glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: .12;
+    background: radial-gradient(circle, #fff 0%, transparent 70%);
+  }
+  .pse-highlights__glow--a { width: 480px; height: 480px; top: -140px; left: -100px; }
+  .pse-highlights__glow--b { width: 320px; height: 320px; bottom: 100px; right: -80px; }
+  .pse-highlights__glow--c { width: 200px; height: 200px; top: 20px;  right: 30%;    opacity: .07; }
 
+  .pse-highlights__heading {
+    font-family: var(--pse-font-h);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--pse-white);
+    text-align: center;
+    margin-bottom: 44px;
+    letter-spacing: -.015em;
+    position: relative;
+    z-index: 2;
+  }
 
+  .pse-highlights__wrap {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 64px;
+    z-index: 2;
+  }
 
+  .pse-highlights__outer {
+    overflow: hidden;
+    border-radius: 4px;
+  }
 
-    /* ===================== Exibition Must Visit ===================== */
+  .pse-highlights__track {
+    display: flex;
+    gap: 20px;
+    transition: transform .48s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+  }
 
-/* Tokens */
-.pse-highlights,
-.pse-footer {
-  --pse-deep:      #2d0d52;
-  --pse-mid:       #3d1270;
-  --pse-card-bg:   #e8d5fc;
-  --pse-card-text: #2d0860;
-  --pse-card-sub:  #5b2fa0;
-  --pse-accent:    #7c3aed;
-  --pse-light:     #a855f7;
-  --pse-white:     #ffffff;
-  --pse-font-h:    'Poppins', sans-serif;
-  --pse-font-b:    'Nunito', sans-serif;
-  box-sizing: border-box;
-}
-.pse-highlights *, .pse-highlights *::before, .pse-highlights *::after,
-.pse-footer *,     .pse-footer *::before,     .pse-footer *::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
+  .pse-highlights__card {
+    flex: 0 0 calc(25% - 15px);
+    background: var(--pse-card-bg);
+    border-radius: 18px;
+    padding: 30px 22px 26px;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 6px 28px rgba(0,0,0,.22);
+    transition: transform .28s ease, box-shadow .28s ease;
+    cursor: default;
+  }
+  .pse-highlights__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(0,0,0,.3);
+  }
+  .pse-highlights__card:focus-visible {
+    outline: 3px solid var(--pse-light);
+    outline-offset: 3px;
+  }
 
-/* ════════════════════════════════════════════════════════════════
-   SECTION — Exhibition Highlights
-   ════════════════════════════════════════════════════════════════ */
-.pse-highlights {
-  position: relative;
-  background: linear-gradient(155deg, #1e0838 0%, #3d1270 45%, #5a1f96 75%, #7330b8 100%);
-  padding: 64px 0 0;            /* bottom padding comes from the curve height */
-  overflow: hidden;
-  font-family: var(--pse-font-b);
-}
+  .pse-highlights__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .pse-highlights__icon svg {
+    width: 42px;
+    height: 42px;
+    stroke: var(--pse-accent);
+    fill: none;
+    stroke-width: 1.55;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
-/* scattered star glows */
-.pse-highlights__glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: .12;
-  background: radial-gradient(circle, #fff 0%, transparent 70%);
-}
-.pse-highlights__glow--a { width: 480px; height: 480px; top: -140px; left: -100px; }
-.pse-highlights__glow--b { width: 320px; height: 320px; bottom: 100px; right: -80px; }
-.pse-highlights__glow--c { width: 200px; height: 200px; top: 20px;  right: 30%;    opacity: .07; }
+  .pse-highlights__card-title {
+    font-family: var(--pse-font-h);
+    font-size: .93rem;
+    font-weight: 700;
+    color: var(--pse-card-text);
+    line-height: 1.4;
+  }
 
-/* heading */
-.pse-highlights__heading {
-  font-family: var(--pse-font-h);
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  font-weight: 700;
-  color: var(--pse-white);
-  text-align: center;
-  margin-bottom: 44px;
-  letter-spacing: -.015em;
-  position: relative;
-  z-index: 2;
-}
+  .pse-highlights__card-desc {
+    font-size: .83rem;
+    color: var(--pse-card-sub);
+    line-height: 1.6;
+  }
 
-/* slider wrapper */
-.pse-highlights__wrap {
-  position: relative;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 64px;
-  z-index: 2;
-}
+  .pse-highlights__nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 36px;
+    position: relative;
+    z-index: 2;
+    padding-bottom: 32px;
+  }
 
-.pse-highlights__outer {
-  overflow: hidden;
-  border-radius: 4px;
-}
+  .pse-highlights__btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.5);
+    background: transparent;
+    color: var(--pse-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, border-color .2s;
+    flex-shrink: 0;
+  }
+  .pse-highlights__btn:hover,
+  .pse-highlights__btn:focus-visible {
+    background: rgba(255,255,255,.15);
+    border-color: var(--pse-white);
+  }
+  .pse-highlights__btn:focus-visible { outline: 3px solid var(--pse-light); }
+  .pse-highlights__btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .pse-highlights__curve {
+    position: relative;
+    margin-top: -2px;
+    line-height: 0;
+    z-index: 2;
+  }
+  .pse-highlights__curve svg {
+    display: block;
+    width: 100%;
+    height: clamp(60px, 8vw, 100px);
+  }
 
-.pse-highlights__track {
-  display: flex;
-  gap: 20px;
-  transition: transform .48s cubic-bezier(.4, 0, .2, 1);
-  will-change: transform;
-}
+/* ════════ FOOTER ═════════ */
+  .pse-footer {
+    background: var(--pse-deep);
+    font-family: var(--pse-font-b);
+    margin-top: 80px;
+  }
 
-/* cards */
-.pse-highlights__card {
-  flex: 0 0 calc(25% - 15px);
-  background: var(--pse-card-bg);
-  border-radius: 18px;
-  padding: 30px 22px 26px;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  box-shadow: 0 6px 28px rgba(0,0,0,.22);
-  transition: transform .28s ease, box-shadow .28s ease;
-  cursor: default;
-}
-.pse-highlights__card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 36px rgba(0,0,0,.3);
-}
-.pse-highlights__card:focus-visible {
-  outline: 3px solid var(--pse-light);
-  outline-offset: 3px;
-}
+  .pse-footer__body {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 40px 40px 36px;
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 1fr 1fr;
+    gap: 28px 36px;
+    align-items: start;
+  }
 
-.pse-highlights__icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.pse-highlights__icon svg {
-  width: 42px;
-  height: 42px;
-  stroke: var(--pse-accent);
-  fill: none;
-  stroke-width: 1.55;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+  .pse-footer__logo {
+    width: 108px;
+    height: 82px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 6px;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+  .pse-footer__logo-badge {
+    background: #e74c3c;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: .42rem;
+    font-family: var(--pse-font-h);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .pse-footer__logo-name {
+    font-family: var(--pse-font-h);
+    font-size: .6rem;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: .01em;
+  }
+  .pse-footer__logo-sub {
+    font-size: .5rem;
+    font-weight: 600;
+    color: rgba(255,255,255,.75);
+    text-align: center;
+    letter-spacing: .03em;
+  }
 
-.pse-highlights__card-title {
-  font-family: var(--pse-font-h);
-  font-size: .93rem;
-  font-weight: 700;
-  color: var(--pse-card-text);
-  line-height: 1.4;
-}
+  .pse-footer__col-label {
+    font-family: var(--pse-font-h);
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--pse-white);
+    margin-bottom: 10px;
+  }
 
-.pse-highlights__card-desc {
-  font-size: .83rem;
-  color: var(--pse-card-sub);
-  line-height: 1.6;
-}
+  .pse-footer__row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .pse-footer__row svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    stroke: rgba(255,255,255,.55);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-top: 2px;
+  }
+  .pse-footer__col-text {
+    font-size: .8rem;
+    color: rgba(255,255,255,.68);
+    line-height: 1.75;
+  }
 
-/* nav arrows */
-.pse-highlights__nav {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 36px;
-  position: relative;
-  z-index: 2;
-  /* sits above the curve — curve starts below this */
-  padding-bottom: 32px;
-}
+  .pse-footer__social {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .pse-footer__social-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,.3);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .pse-footer__social-link svg {
+    width: 17px;
+    height: 17px;
+    stroke: rgba(255,255,255,.75);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .pse-footer__social-link:hover,
+  .pse-footer__social-link:focus-visible {
+    border-color: var(--pse-white);
+    background: rgba(255,255,255,.1);
+  }
+  .pse-footer__social-link:focus-visible { outline: 2px solid var(--pse-light); }
 
-.pse-highlights__btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.5);
-  background: transparent;
-  color: var(--pse-white);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .2s, border-color .2s;
-  flex-shrink: 0;
-}
-.pse-highlights__btn:hover,
-.pse-highlights__btn:focus-visible {
-  background: rgba(255,255,255,.15);
-  border-color: var(--pse-white);
-}
-.pse-highlights__btn:focus-visible { outline: 3px solid var(--pse-light); }
-.pse-highlights__btn svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2.3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+  /* copyright strip */
+  .pse-footer__copy {
+    border-top: 1px solid rgba(255,255,255,.1);
+    text-align: center;
+    padding: 15px 40px;
+    font-size: .78rem;
+    /* color: rgba(255,255,255,.45); */
+    background-color: white;
+    font-family: var(--pse-font-b);
+  }
 
-/*
-  ── THE SMOOTH ELLIPTICAL CURVE ──────────────────────────────────
-  This creates the wide, deep, smooth bowl-shaped curve you see in
-  the screenshot — not a sine wave / zigzag but a single sweeping
-  ellipse transition from the purple section to the white page.
-*/
-.pse-highlights__curve {
-  position: relative;
-  /* negative margin pulls it flush against the nav */
-  margin-top: -2px;
-  line-height: 0;
-  z-index: 2;
-}
-.pse-highlights__curve svg {
-  display: block;
-  width: 100%;
-  /* tall enough for a visually deep curve */
-  height: clamp(60px, 8vw, 100px);
-}
+  @media (max-width: 1024px) {
+    .pse-highlights__card   { flex: 0 0 calc(50% - 10px); }
+    .pse-footer__body       { grid-template-columns: 1fr 1fr; }
+  }
 
-/* ════════════════════════════════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════════════════════════════════ */
-.pse-footer {
-  background: var(--pse-deep);
-  font-family: var(--pse-font-b);
-}
+  @media (max-width: 640px) {
+    .pse-highlights__wrap   { padding: 0 12px; }
+    .pse-highlights__card   { flex: 0 0 calc(90vw - 20px); }
+    .pse-highlights__heading{ font-size: 1.2rem; margin-bottom: 28px; }
+    .pse-footer__body       { grid-template-columns: 1fr; padding: 28px 20px 24px; }
+    .pse-footer__copy       { padding: 14px 20px; }
+  }
 
-.pse-footer__body {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 40px 40px 36px;
-  display: grid;
-  grid-template-columns: 120px 1fr 1fr 1fr 1fr;
-  gap: 28px 36px;
-  align-items: start;
-}
+  @media (prefers-reduced-motion: reduce) {
+    .pse-highlights__track  { transition: none !important; }
+    .pse-highlights__card   { transition: none !important; }
+  }
 
-/* logo tile */
-.pse-footer__logo {
-  width: 108px;
-  height: 82px;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #1a3a8f 0%, #c0392b 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 6px;
-  gap: 3px;
-  flex-shrink: 0;
-}
-.pse-footer__logo-badge {
-  background: #e74c3c;
-  border-radius: 3px;
-  padding: 2px 5px;
-  font-size: .42rem;
-  font-family: var(--pse-font-h);
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-.pse-footer__logo-name {
-  font-family: var(--pse-font-h);
-  font-size: .6rem;
-  font-weight: 800;
-  color: #fff;
-  text-align: center;
-  line-height: 1.4;
-  letter-spacing: .01em;
-}
-.pse-footer__logo-sub {
-  font-size: .5rem;
-  font-weight: 600;
-  color: rgba(255,255,255,.75);
-  text-align: center;
-  letter-spacing: .03em;
-}
-
-/* column label */
-.pse-footer__col-label {
-  font-family: var(--pse-font-h);
-  font-size: .88rem;
-  font-weight: 700;
-  color: var(--pse-white);
-  margin-bottom: 10px;
-}
-
-/* icon + text row */
-.pse-footer__row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-.pse-footer__row svg {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
-  stroke: rgba(255,255,255,.55);
-  fill: none;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  margin-top: 2px;
-}
-.pse-footer__col-text {
-  font-size: .8rem;
-  color: rgba(255,255,255,.68);
-  line-height: 1.75;
-}
-
-/* social row */
-.pse-footer__social {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-.pse-footer__social-link {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  border: 1.5px solid rgba(255,255,255,.3);
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: border-color .2s, background .2s;
-}
-.pse-footer__social-link svg {
-  width: 17px;
-  height: 17px;
-  stroke: rgba(255,255,255,.75);
-  fill: none;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.pse-footer__social-link:hover,
-.pse-footer__social-link:focus-visible {
-  border-color: var(--pse-white);
-  background: rgba(255,255,255,.1);
-}
-.pse-footer__social-link:focus-visible { outline: 2px solid var(--pse-light); }
-
-/* copyright strip */
-.pse-footer__copy {
-  border-top: 1px solid rgba(255,255,255,.1);
-  text-align: center;
-  padding: 15px 40px;
-  font-size: .78rem;
-  color: rgba(255,255,255,.45);
-  font-family: var(--pse-font-b);
-}
-
-/* ── RESPONSIVE ─────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .pse-highlights__card   { flex: 0 0 calc(50% - 10px); }
-  .pse-footer__body       { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 640px) {
-  .pse-highlights__wrap   { padding: 0 12px; }
-  .pse-highlights__card   { flex: 0 0 calc(90vw - 20px); }
-  .pse-highlights__heading{ font-size: 1.2rem; margin-bottom: 28px; }
-  .pse-footer__body       { grid-template-columns: 1fr; padding: 28px 20px 24px; }
-  .pse-footer__copy       { padding: 14px 20px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pse-highlights__track  { transition: none !important; }
-  .pse-highlights__card   { transition: none !important; }
-}
-    /* ===================== REDUCED MOTION ===================== */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
-    /* ===================== RESPONSIVE ===================== */
     @media (max-width: 1024px) {
       .hero__layout { grid-template-columns: 1fr 1fr; }
       .hero__slider-wrap { display: none; }
       .stats__grid { grid-template-columns: repeat(2, 1fr); }
-      .choose__cards { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       :root { --nav-h: 60px; }
@@ -1665,15 +1507,12 @@
       .stats__grid { grid-template-columns: repeat(2, 1fr); }
       .schools { padding: 48px 0; }
       .choose { padding: 60px 24px; }
-      .choose__cards { display: none; }
-      .choose__slider-wrap { display: block; position: relative; overflow: hidden; }
       .choose__slider-track {
         display: flex; gap: 20px;
         transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
       }
-      .choose__slider-track .choose__card { min-width: calc(100vw - 48px); }
+   
       .exhibition { padding: 60px 0; }
-      .exhibition__track { padding: 0 24px; }
       .exhibition__card { width: 280px; }
       .cta-section { padding: 60px 24px; }
       footer { padding: 30px 24px; }
@@ -1690,16 +1529,16 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <a href="/" class="navbar__logo" aria-label="Premier Schools Exhibition – Home">
-      <!-- Logo placeholder with branded text -->
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:52px;height:52px;background:linear-gradient(135deg,#fff,#d4a843);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:#2d1060;">P</span>
+      <div class="brand-switcher">
+
+        <div class="brand-hero-mark">
+          <img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780903833/Screenshot_2026-06-08_at_12.58.40_PM_bq4hul.png" alt="Premier Schools Exhibition">
         </div>
-        <div style="color:#fff;line-height:1.15;font-family:'DM Sans',sans-serif;">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;">22nd Edition</div>
-          <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:900;">Premier Schools</div>
-          <div style="font-size:0.7rem;font-weight:600;color:#d4a843;text-transform:uppercase;letter-spacing:0.1em;">Exhibition</div>
+      
+        <div class="brand-navbar-mark">
+          <img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780903833/Screenshot_2026-06-08_at_12.59.29_PM_p9k7mx.png" alt="Premier Schools Exhibition">
         </div>
+      
       </div>
     </a>
     <a href="#register" class="navbar__cta" aria-label="Register now for the exhibition">
@@ -1776,22 +1615,22 @@
             <div class="hero__slide" aria-label="Slide 1 of 3" role="group">
               <div class="hero__images-grid">
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&auto=format" alt="Child playing outdoors with pinwheel" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9sp8AfWDcfnyi3xWD2QK-yP9IqZFbTrEufD48j3Ac3Q&s=10" alt="Child playing outdoors with pinwheel" loading="eager" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&h=300&fit=crop&auto=format" alt="Girl student smiling in school uniform" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFYImSs5bAhQph1NjKuGeUPrJIOjfQHUY6vJs8hKMlvg&s=10" alt="Girl student smiling in school uniform" loading="eager" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=400&h=300&fit=crop&auto=format" alt="Student using microscope in lab" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgCW9fkcpycHfAnjQ_CY67InLCmznlCtrvvnf9PFCW2Q&s=10" alt="Student using microscope in lab" loading="eager" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=300&fit=crop&auto=format" alt="Young boy smiling happily" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTed8VTk2tnVxByOaPsDVsKDLG_sbgT5EoMAibLNcGoww&s=10" alt="Young boy smiling happily" loading="eager" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop&auto=format" alt="Student with glasses reading a book" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZh0fCmG-c6z9jP8nDyVbFgOOeZbJFOzroBh2eZoTvWw&s=10" alt="Student with glasses reading a book" loading="eager" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&h=300&fit=crop&auto=format" alt="Children learning in classroom" loading="eager" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXqhwy13PCR6E0_jUGVMFGcntEu5jYCLGVpPNYjxnlzw&s=10" alt="Children learning in classroom" loading="eager" />
                 </div>
               </div>
             </div>
@@ -1799,44 +1638,44 @@
             <div class="hero__slide" aria-label="Slide 2 of 3" role="group">
               <div class="hero__images-grid">
                 <div class="hero__img-bubble second__grid">
-                  <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=300&fit=crop&auto=format" alt="Students in art class" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbzBnKmT8PaZZVtP_vtvhOKiJFS5Wjasw1oaaXjurtNg&s=10" alt="Students in art class" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1574492862842-62c0d66d3d07?w=400&h=300&fit=crop&auto=format" alt="Girl cycling with helmet" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmPE27IajwO8I722iR8eghVaySkC6d-8lVynOb8JPoEA&s=10" alt="Girl cycling with helmet" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?w=400&h=300&fit=crop&auto=format" alt="Children playing sports" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpJiAfV68AzJzyLf5fGYBNuxu3ptRXrQpSLthMOHXimA&s=10" alt="Children playing sports" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&h=300&fit=crop&auto=format" alt="Child reading outdoors" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXkg9WJ-QYHyDgfakO-MHo-ASNzXme_oM6YmT7gO9L1w&s=10" alt="Child reading outdoors" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=300&fit=crop&auto=format" alt="Student at school event" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWjfVpC5tzgKMCtgqXmugxRMccM0EbrdBxPPBK6_emRw&s=10" alt="Student at school event" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&auto=format" alt="Happy child at exhibition" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP-MyKlLvfFJ9m7tVZov2C60BA78OD3yAGZLqDHNzEPw&s=10" alt="Happy child at exhibition" loading="lazy" />
                 </div>
               </div>
             </div>
             <div class="hero__slide" aria-label="Slide 3 of 2" role="group">
               <div class="hero__images-grid">
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=300&fit=crop&auto=format" alt="Students in art class" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ1JwugeMN7wS2DE7R6uW4mE63vPXRu9GKJq-H7CeMrg&s=10" alt="Students in art class" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1574492862842-62c0d66d3d07?w=400&h=300&fit=crop&auto=format" alt="Girl cycling with helmet" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSi0eRrk4Uq-disCgwszAX-Nfx_fdtZbEwFS--QN_0vA&s=10" alt="Girl cycling with helmet" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?w=400&h=300&fit=crop&auto=format" alt="Children playing sports" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtm1noMEbXEVmr2Zf2d5C2Jd95x8gOHzh2vm5MG0Vpkw&s=10" alt="Children playing sports" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&h=300&fit=crop&auto=format" alt="Child reading outdoors" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQe1YhLzUKZMbdWF5GKzrgl2XgSuU98Nl7Ou5i196iAg&s=10" alt="Child reading outdoors" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=300&fit=crop&auto=format" alt="Student at school event" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiJoV9EA62zQv_xI9DXZJzF9fy2od2CMoXjZf0KEboPA&s=10" alt="Student at school event" loading="lazy" />
                 </div>
                 <div class="hero__img-bubble">
-                  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&auto=format" alt="Happy child at exhibition" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY7ZZc_dX2oLxJsVhmYNmj4vuMf8VtNONnSiw_5VVadw&s=10" alt="Happy child at exhibition" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -1893,8 +1732,23 @@
     <section class="schools" aria-label="Participating schools">
       <h2 class="schools__title">Participating Schools</h2>
       <div class="schools__track-wrap">
-        <!-- Row 2: right scroll -->
         <div class="schools__track schools__track--rtl" id="track2" aria-hidden="true">
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.05_PM_xk75m0.png" /></div>
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.46_PM_xtiei9.png" /></div>
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.16.19_PM_phebdn.png" /></div>
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818760/Screenshot_2026-06-07_at_1.16.56_PM_xemztt.png" /></div>
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818763/Screenshot_2026-06-07_at_1.17.40_PM_kenflg.png" /></div>
+          <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818763/Screenshot_2026-06-07_at_1.18.17_PM_d7punt.png" /></div>
+         
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818763/Screenshot_2026-06-07_at_1.18.17_PM_d7punt.png" /></div>
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.46_PM_xtiei9.png" /></div>
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.05_PM_xk75m0.png" /></div>
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818760/Screenshot_2026-06-07_at_1.16.56_PM_xemztt.png" /></div>
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.16.19_PM_phebdn.png" /></div>
+          <div class="schools__logo-item" aria-hidden="true"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818763/Screenshot_2026-06-07_at_1.17.40_PM_kenflg.png" /></div>
+
+        </div>
+        <div class="schools__track schools__track--ltr" id="track2" aria-hidden="true">
           <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.05_PM_xk75m0.png" /></div>
           <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.15.46_PM_xtiei9.png" /></div>
           <div class="schools__logo-item"><img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780818759/Screenshot_2026-06-07_at_1.16.19_PM_phebdn.png" /></div>
@@ -1914,7 +1768,7 @@
     </section>
 
     
-        <div style="min-width: 100%;" class="video-wrapper">
+        <div style="min-width: 100%;max-height: 60%;" class="video-wrapper">
             <video width="100%" id="myVideo" autoplay poster="thumbnail.jpg">
               <source src="https://res.cloudinary.com/davwgs6zv/video/upload/v1780821423/PREMIER_SCHOOL_EXHIBITION_online-video-cutter.com_upr0fg.mp4" type="video/mp4">
             </video>
@@ -1979,9 +1833,7 @@
         </div>
     </section>
 
- <!-- ════════════════════════════════
-       SECTION 1 – Pre-schedule Hero
-  ════════════════════════════════ -->
+ <!-- ════════ Pre-schedule Hero ═══════ -->
   <section class="hero-section" aria-label="Pre-schedule your school appointments">
 
     <div class="hero-content">
@@ -1995,10 +1847,6 @@
     </div>
 
     <div class="hero-image" role="img" aria-label="Parents consulting with school representatives at an exhibition">
-      <!--
-        Replace the src below with your actual photo.
-        The CSS will crop & fill the panel automatically.
-      -->
       <img
         src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=900&q=80"
         alt="Parents in conversation with school counsellors at an education expo"
@@ -2009,61 +1857,25 @@
   </section>
 
 
-  <!-- ════════════════════════════════
-       SECTION 2 – Attractions
-  ════════════════════════════════ -->
+  <!-- ═══════ Attractions ═══════ -->
   <section class="attractions-section" aria-label="Other attractions for parents and kids">
-
-    <!-- Rhombus / diamond gallery -->
     <div class="rhombus-gallery" role="img" aria-label="Children performing on stage">
       <div class="rhombus-wrap">
-        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&q=80" alt="Child in colourful outfit performing" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfyQaKJPhrTN76QWy3GULehb9BculcV_6g069h2lb1QQ&s=10" alt="Child in colourful outfit performing" />
       </div>
       <div class="rhombus-wrap">
-        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=300&q=80" alt="Young girl singing on stage" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIjXnpip356F11OyjZ-NVC5rt-Gr0rGDfHNnhBlydMjg&s=10" alt="Young girl singing on stage" />
       </div>
       <div class="rhombus-wrap">
-        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=300&q=80" alt="Child in yellow dress at award show" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVQa-U3aQmSvy5ZNEEQsNNAm58qTqdw3bpr-zHrp-mMw&s=10" alt="Child in yellow dress at award show" />
       </div>
       <div class="rhombus-wrap">
-        <img src="https://images.unsplash.com/photo-1534361960057-19f4434a4d17?w=300&q=80" alt="Group of children receiving awards" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWuefIk2WkNIAze1ESSZRZhQhp3GSAhsc8Ke2sQq2Xrw&s=10" alt="Group of children receiving awards" />
       </div>
     </div>
-
-    <!-- Logo placeholder space -->
     <div class="logo-space" aria-label="Premier Kidz Awards logo">
-      <!-- Premier Kidz Awards Star Logo (inline SVG replica) -->
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Premier Kidz Awards logo">
-        <!-- Star shape -->
-        <polygon
-          points="100,10 120,75 188,75 133,115 153,180 100,140 47,180 67,115 12,75 80,75"
-          fill="#f59e0b"
-          stroke="#f59e0b"
-          stroke-linejoin="round"
-        />
-        <!-- Inner highlight -->
-        <polygon
-          points="100,28 116,78 168,78 126,108 142,158 100,128 58,158 74,108 32,78 84,78"
-          fill="#fbbf24"
-          opacity="0.6"
-        />
-        <!-- Red ribbon band across middle -->
-        <rect x="25" y="93" width="150" height="30" rx="4" fill="#dc2626" opacity="0.9" />
-        <!-- Logo "A" mark (red square with white A) -->
-        <rect x="86" y="60" width="28" height="28" rx="3" fill="#dc2626" />
-        <text x="100" y="80" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" fill="#fff">A</text>
-        <!-- PREMIER text -->
-        <text x="100" y="107" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="11" font-weight="900" fill="#fff" letter-spacing="2">PREMIER</text>
-        <!-- Kidz text (larger, colourful) -->
-        <text x="100" y="138" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="19" font-weight="900">
-          <tspan fill="#1e1b4b">K</tspan><tspan fill="#7c3aed">i</tspan><tspan fill="#1e1b4b">d</tspan><tspan fill="#f59e0b">z</tspan>
-        </text>
-        <!-- AWARDS text -->
-        <text x="100" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#1e1b4b" letter-spacing="2">AWARDS</text>
-      </svg>
+      <img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780901010/Screenshot_2026-06-08_at_12.11.57_PM_mbxonb.png" />
     </div>
-
-    <!-- Right: text + tabs -->
     <div class="attractions-content">
       <h2 class="attractions-title">Other Attractions for<br>Parents &amp; Kids</h2>
 
@@ -2103,12 +1915,8 @@
 
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-     SECTION 1 — What Makes This Exhibition a Must-Visit
-     ═══════════════════════════════════════════════════════════════ -->
+  <!-- ════════ What Makes This Exhibition a Must-Visit ══════ -->
 <section class="pse-highlights" aria-labelledby="pse-highlights-heading">
-
-  <!-- decorative glows -->
   <div class="pse-highlights__glow pse-highlights__glow--a" aria-hidden="true"></div>
   <div class="pse-highlights__glow pse-highlights__glow--b" aria-hidden="true"></div>
   <div class="pse-highlights__glow pse-highlights__glow--c" aria-hidden="true"></div>
@@ -2124,8 +1932,6 @@
          aria-label="Exhibition highlights">
 
       <div class="pse-highlights__track" id="pseTrack">
-
-        <!-- Card 1 -->
         <article class="pse-highlights__card" tabindex="0">
           <div class="pse-highlights__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -2139,8 +1945,6 @@
           <h3 class="pse-highlights__card-title">Interact Directly with School Heads</h3>
           <p class="pse-highlights__card-desc">Get answers straight from the experts</p>
         </article>
-
-        <!-- Card 2 -->
         <article class="pse-highlights__card" tabindex="0">
           <div class="pse-highlights__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -2156,8 +1960,7 @@
           <h3 class="pse-highlights__card-title">Compare Curriculum &amp; Pedagogy</h3>
           <p class="pse-highlights__card-desc">Understand the differences between CBSE, ICSE, IB, Cambridge, Finnish &amp; more</p>
         </article>
-
-        <!-- Card 3 -->
+      
         <article class="pse-highlights__card" tabindex="0">
           <div class="pse-highlights__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -2171,8 +1974,6 @@
           <h3 class="pse-highlights__card-title">Get Exclusive Fee Structures &amp; Offers</h3>
           <p class="pse-highlights__card-desc">Access transparent information and avail offers</p>
         </article>
-
-        <!-- Card 4 -->
         <article class="pse-highlights__card" tabindex="0">
           <div class="pse-highlights__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -2186,8 +1987,6 @@
           <h3 class="pse-highlights__card-title">Explore Schools Offerings</h3>
           <p class="pse-highlights__card-desc">Preview infrastructure, co-curricular, teaching methodology and culture</p>
         </article>
-
-        <!-- Card 5 -->
         <article class="pse-highlights__card" tabindex="0">
           <div class="pse-highlights__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -2201,10 +2000,9 @@
           <p class="pse-highlights__card-desc">Save time on applications with expert admission guidance</p>
         </article>
 
-      </div><!-- /track -->
-    </div><!-- /outer -->
+      </div>
+    </div>
 
-    <!-- Arrow nav -->
     <nav class="pse-highlights__nav" aria-label="Slider navigation">
       <button class="pse-highlights__btn" id="psePrev" aria-label="Previous cards">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -2213,27 +2011,13 @@
         <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
       </button>
     </nav>
-  </div><!-- /wrap -->
+  </div>
 
-  <!--
-    SMOOTH ELLIPTICAL CURVE
-    Uses a single cubic bezier path that starts at the left edge,
-    dips into a wide deep bowl shape at centre, and rises to the
-    right edge — producing the smooth rounded curve from the screenshot.
-    The fill matches whatever background is below this section.
-  -->
   <div class="pse-highlights__curve" aria-hidden="true">
     <svg
       viewBox="0 0 1440 90"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none">
-      <!--
-        M 0,0       — start top-left of SVG
-        C 360,90    — left control point pulls the curve DOWN at centre-left
-          1080,90   — right control point keeps it down at centre-right
-          1440,0    — end top-right of SVG
-        L 1440,90 L 0,90 Z — close the rectangle at the bottom
-      -->
       <path d="M 0,0 C 360,90 1080,90 1440,0 L 1440,90 L 0,90 Z" fill="#ffffff"/>
     </svg>
   </div>
@@ -2241,7 +2025,6 @@
 </section>
 
   <script>
-    /* Tab switching */
     const tabs  = document.querySelectorAll('[role="tab"]');
     const panels = document.querySelectorAll('[role="tabpanel"]');
 
@@ -2253,8 +2036,6 @@
         tab.setAttribute('aria-selected','true');
         document.getElementById(tab.getAttribute('aria-controls')).hidden = false;
       });
-
-      /* Keyboard navigation (arrow keys) */
       tab.addEventListener('keydown', e => {
         const idx  = [...tabs].indexOf(tab);
         if (e.key === 'ArrowRight') tabs[(idx + 1) % tabs.length].focus();
@@ -2329,25 +2110,20 @@
 
     <h2 class="gallery-title">Gallery</h2>
 
-    <!-- CURVE STAYS FIXED -->
     <div class="gallery-mask">
-        <!-- ONLY THIS SCROLLS -->
         <div class="gallery-wrapper">
 
             <div class="gallery-track">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-  
-              <!-- duplicate -->
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBcxoK5LXegP2P5VzGL_XsjLI-7BN5z4YT5e4Ydsp5AQ&s=10" alt="">
-  
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoc1mrHFzzS9HNTpBzdIqzqrE4g5u-w4FyDxSrCj9_kw&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7XcAigRlmbHE4My3FZoKuU0XYqiFCBUd2HanK1F_y9g&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwP_vQqDtjjsEaQyBq7x7Evj4Iu4okukid9Lvo8zKK7A&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjnIDl5K5-bM8bismdbcE6D_-qglgQpLAJKBjJGrLWVw&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_EguLdtmyBLTIiSx4x-xFwoQL51ZbjuHmfL1s7F5JmQ&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjjwPA04jgfQPh3ShdzRa9vZpDXHfzgmvi-TzhrAwVPQ&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Uf06UvJMNlBb7LTbtvRXCgPzTlYnvGaIlBbDPzrkug&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLsS9GYUD0f1lV34YRGEDCahYY9jTuw-oY_HB-stWBg&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4xMQj-tnb7et4uS6bUk-x40fi66lKkteuA2WaHWI1gg&s=10" alt="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN4oF6BX3plK0RsBU5SzFPPhWaLyqff54Jwzg1TYJY-w&s=10" alt="">
             </div>
 
         </div>
@@ -2356,20 +2132,13 @@
 
   </main>
 
-  <!-- ═══════════════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════════════ -->
+  <!-- ════ FOOTER ══════ -->
 <footer class="pse-footer" role="contentinfo">
 
   <div class="pse-footer__body">
-
-    <!-- Logo -->
     <div class="pse-footer__logo" role="img" aria-label="Premier Schools Exhibition 23rd Edition logo">
-      <span class="pse-footer__logo-badge">23rd Edition</span>
-      <span class="pse-footer__logo-name">Premier<br>Schools<br>Exhibition</span>
+      <img src="https://res.cloudinary.com/davwgs6zv/image/upload/v1780903833/Screenshot_2026-06-08_at_12.58.40_PM_bq4hul.png" />
     </div>
-
-    <!-- Corporate Office -->
     <address style="font-style:normal;">
       <p class="pse-footer__col-label">Corporate Office:</p>
       <div class="pse-footer__row">
@@ -2384,8 +2153,6 @@
         </p>
       </div>
     </address>
-
-    <!-- Ahmedabad Office -->
     <address style="font-style:normal;">
       <p class="pse-footer__col-label">Ahmedabad Office:</p>
       <div class="pse-footer__row">
@@ -2400,8 +2167,6 @@
         </p>
       </div>
     </address>
-
-    <!-- Call us -->
     <div>
       <p class="pse-footer__col-label">Call us on</p>
       <div class="pse-footer__row">
@@ -2414,8 +2179,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Follow us -->
     <div>
       <p class="pse-footer__col-label">Follow us on</p>
       <div class="pse-footer__social" role="list">
@@ -2440,26 +2203,21 @@
       </div>
     </div>
 
-  </div><!-- /body -->
+  </div>
 
   <div class="pse-footer__copy">
     Copyright &nbsp;&nbsp; 2025 | All rights reserved. &nbsp; Premier Schools Exhibition
   </div>
 
 </footer>
-
-  <!-- SR only utility -->
   <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
   <script>
-    /* ======== NAVBAR SCROLL ======== */
     const navbar = document.getElementById('navbar');
     const onScroll = () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    /* ======== HERO IMAGE SLIDER ======== */
     (function(){
       const slider = document.getElementById('heroSlider');
       const dotsWrap = document.getElementById('heroDots');
@@ -2508,106 +2266,6 @@
 
       autoPlay();
     })();
-
-    /* ======== CHOOSE MOBILE SLIDER ======== */
-    (function(){
-      const wrap = document.getElementById('chooseSliderWrap');
-      const track = document.getElementById('chooseTrack');
-      const dotsWrap = document.getElementById('chooseDots');
-      const cards = track.querySelectorAll('.choose__card');
-      let cur = 0;
-
-      cards.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'choose__dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-label', `Card ${i+1}`);
-        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-        dot.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(dot);
-      });
-
-      function goTo(n) {
-        cur = (n + cards.length) % cards.length;
-        const w = cards[0].offsetWidth + 20;
-        track.style.transform = `translateX(-${cur * w}px)`;
-        dotsWrap.querySelectorAll('.choose__dot').forEach((d, i) => {
-          d.classList.toggle('active', i === cur);
-          d.setAttribute('aria-selected', i === cur ? 'true' : 'false');
-        });
-      }
-
-      let tx = 0;
-      wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', e => {
-        const diff = tx - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(cur + (diff > 0 ? 1 : -1));
-      });
-    })();
-
-    /* ======== EXHIBITION SLIDER ======== */
-    (function(){
-      const track = document.getElementById('exhibTrack');
-      const dotsWrap = document.getElementById('exhibDots');
-      const cards = track.querySelectorAll('.exhibition__card');
-      let cur = 0;
-      let timer;
-
-      function getVisible() {
-        return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
-      }
-
-      const totalPages = () => Math.ceil(cards.length / getVisible());
-
-      function buildDots() {
-        dotsWrap.innerHTML = '';
-        for (let i = 0; i < totalPages(); i++) {
-          const dot = document.createElement('button');
-          dot.className = 'exhibition__edot' + (i === 0 ? ' active' : '');
-          dot.setAttribute('role', 'tab');
-          dot.setAttribute('aria-label', `Page ${i+1}`);
-          dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-          dot.addEventListener('click', () => { clearInterval(timer); goTo(i); autoPlay(); });
-          dotsWrap.appendChild(dot);
-        }
-      }
-
-      function goTo(n) {
-        const pages = totalPages();
-        cur = (n + pages) % pages;
-        const vis = getVisible();
-        const gap = 24;
-        const cardW = cards[0].offsetWidth + gap;
-        track.style.transform = `translateX(-${cur * vis * cardW}px)`;
-        dotsWrap.querySelectorAll('.exhibition__edot').forEach((d, i) => {
-          d.classList.toggle('active', i === cur);
-          d.setAttribute('aria-selected', i === cur ? 'true' : 'false');
-        });
-      }
-
-      function autoPlay() {
-        timer = setInterval(() => goTo(cur + 1), 5000);
-      }
-
-      document.getElementById('exhibNext').addEventListener('click', () => { clearInterval(timer); goTo(cur + 1); autoPlay(); });
-      document.getElementById('exhibPrev').addEventListener('click', () => { clearInterval(timer); goTo(cur - 1); autoPlay(); });
-
-      track.closest('.exhibition__track-wrap').addEventListener('mouseenter', () => clearInterval(timer));
-      track.closest('.exhibition__track-wrap').addEventListener('mouseleave', autoPlay);
-
-      let tx = 0;
-      track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend', e => {
-        const diff = tx - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) { clearInterval(timer); goTo(cur + (diff > 0 ? 1 : -1)); autoPlay(); }
-      });
-
-      window.addEventListener('resize', () => { buildDots(); goTo(0); });
-      buildDots();
-      autoPlay();
-    })();
-
-    /* ======== FORM ======== */
     document.getElementById('enquiryForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const name = this.parentName.value.trim();
@@ -2622,101 +2280,77 @@
 
     const slider = document.querySelector(".gallery-wrapper");
 
-let isDown = false;
-let startX;
-let scrollLeft;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX;
-    scrollLeft = slider.scrollLeft;
-});
+    slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX;
+        scrollLeft = slider.scrollLeft;
+    });
 
-document.addEventListener("mouseup", () => {
-    isDown = false;
-});
+    document.addEventListener("mouseup", () => {
+        isDown = false;
+    });
 
-document.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
+    document.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
 
-    e.preventDefault();
+        e.preventDefault();
 
-    const walk = (e.pageX - startX) * 2;
-    slider.scrollLeft = scrollLeft - walk;
-});
-window.addEventListener("load", () => {
-    const secondImage = document.querySelectorAll(".gallery-track img")[1];
+        const walk = (e.pageX - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+    window.addEventListener("load", () => {
+        const secondImage = document.querySelectorAll(".gallery-track img")[1];
 
-    slider.scrollLeft =
-        secondImage.offsetLeft -
-        (slider.offsetWidth / 2) +
-        (secondImage.offsetWidth / 2);
-});
+        slider.scrollLeft =
+            secondImage.offsetLeft -
+            (slider.offsetWidth / 2) +
+            (secondImage.offsetWidth / 2);
+    });
 
+    (function () {
+      const track = document.getElementById('pseTrack');
+      const prev = document.getElementById('psePrev');
+      const next = document.getElementById('pseNext');
 
-(function () {
-  'use strict';
-  var track = document.getElementById('pseTrack');
-  var prev  = document.getElementById('psePrev');
-  var next  = document.getElementById('pseNext');
-  if (!track || !prev || !next) return;
+      if (!track || !prev || !next) return;
 
-  var cards    = Array.from(track.children);
-  var current  = 0;
-  var timer    = null;
-  var touchX   = null;
+      const cards = track.querySelectorAll('.pse-highlights__card');
+      let current = 0;
 
-  function gap()     { return 20; }
-  function visible() {
-    var w = track.parentElement.offsetWidth;
-    return w < 500 ? 1 : w < 820 ? 2 : 4;
-  }
-  function maxIdx()  { return Math.max(0, cards.length - visible()); }
-  function cw()      { return cards[0] ? cards[0].offsetWidth + gap() : 0; }
+      function visible() {
+        return window.innerWidth < 500 ? 1 :
+              window.innerWidth < 820 ? 2 : 4;
+      }
 
-  function goTo(i) {
-    current = Math.max(0, Math.min(i, maxIdx()));
-    track.style.transform = 'translateX(-' + (current * cw()) + 'px)';
-    prev.setAttribute('aria-disabled', current === 0 ? 'true' : 'false');
-    next.setAttribute('aria-disabled', current >= maxIdx() ? 'true' : 'false');
-  }
+      function maxIndex() {
+        return Math.max(0, cards.length - visible());
+      }
 
-  prev.addEventListener('click', function () { goTo(current - 1); });
-  next.addEventListener('click', function () { goTo(current + 1); });
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, maxIndex()));
 
-  function startAuto() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    timer = setInterval(function () {
-      goTo(current < maxIdx() ? current + 1 : 0);
-    }, 3600);
-  }
-  function stopAuto() { clearInterval(timer); }
+        track.style.transform =
+          `translateX(-${cards[current].offsetLeft}px)`;
+      }
 
-  var outer = track.closest('[role="region"]');
-  outer.addEventListener('mouseenter', stopAuto);
-  outer.addEventListener('mouseleave', startAuto);
-  outer.addEventListener('focusin',    stopAuto);
-  outer.addEventListener('focusout',   startAuto);
+      prev.addEventListener('click', () => {
+        goTo(current - 1);
+      });
 
-  outer.addEventListener('touchstart', function (e) {
-    touchX = e.touches[0].clientX;
-  }, { passive: true });
-  outer.addEventListener('touchend', function (e) {
-    if (touchX === null) return;
-    var dx = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
-    touchX = null;
-  });
+      next.addEventListener('click', () => {
+        goTo(current + 1);
+      });
 
-  var resizeT;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(function () { goTo(Math.min(current, maxIdx())); }, 160);
-  });
+      window.addEventListener('resize', () => {
+        goTo(current);
+      });
 
-  goTo(0);
-  startAuto();
-}());
+      goTo(0);
+    })();
   </script>
 </body>
 </html>
