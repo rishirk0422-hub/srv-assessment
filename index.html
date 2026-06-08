@@ -136,17 +136,6 @@
       display: flex;
     }
 
-    /* Hamburger */
-    .navbar__hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      width: 32px; padding: 4px; background: none;
-    }
-    .navbar__hamburger span {
-      display: block; height: 2px; background: var(--clr-white);
-      transition: background var(--transition), transform 0.3s;
-    }
-    .navbar.scrolled .navbar__hamburger span { background: var(--clr-purple-dark); }
-
     /* ===================== HERO ===================== */
     .hero {
       position: relative; max-height: 600px;
@@ -1524,7 +1513,6 @@
     @media (max-width: 768px) {
       :root { --nav-h: 60px; }
       .navbar { padding: 0 20px; }
-      .navbar__hamburger { display: flex; }
       .hero__layout { grid-template-columns: 1fr; }
       .hero__left { padding: 40px 24px 30px; }
       .hero__right { padding: 0 24px 50px; }
@@ -1572,9 +1560,6 @@
       </svg>
       Register Now
     </a>
-    <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
-      <span></span><span></span><span></span>
-    </button>
   </nav>
 
   <!-- MAIN -->
